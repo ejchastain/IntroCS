@@ -120,7 +120,7 @@
   )
  
 ; add-accidents:Ac x ListOf(ListOf(Image)) -> ListOf(ListOf(Image))
-; draws all of the accidents ac on the terrain stacks stks 
+; draws all of the accidents ac on the terrain stacks stacks 
 ; Approach: as suggested by ben anderson, try to recurse on the non-empty lists
 ; of enemies and lists of items, adding the different objects to the terrain (at the
 ; corresponding stack index s_idx) as you go. Then after you are done with the list 
