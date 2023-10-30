@@ -28,6 +28,25 @@
 ; loi is a list of item structs (accidents of the items)
 (define-struct Ac [pc loe loi])
 
+(define set-loe
+       (lambda [ac new_loe]
+               (make-Ac (Ac-pc ac) new_loe (Ac-loi ac))
+       )
+)
+
+(define set-loi
+       (lambda [ac new_loi]
+               (make-Ac (Ac-pc ac) (Ac-loe ac) new_loi )
+       )
+)
+
+(define set-pc
+       (lambda [ac new_pc]
+               (make-Ac new_pc (Ac-loe ac) (Ac-loe ac) )
+       )
+)
+
+
 ; WS:StructOf(ListOf(ListOf(Image)))
 ; ac: accidents of the gameworld
 (define-struct WS [ac])
@@ -82,8 +101,9 @@
 (define add-accidents
   (λ [ac]
      (cond
-       [(cons? (Ac-loe ac)) (add-accidents (make-Ac (Ac-pc ac) (rest (Ac-loe ac)) (Ac-loi ac)) ]
-       [(cons? (Ac-loi ac)) (add-loi ...)]
+       [(cons? (Ac-loe ac)) (add-image (first (Ac-loe ac)) (add-accidents (set-loe ac (rest (Ac-loe ac))))) ]
+       [(cons? (Ac-loi ac)) (add-accidents (set-loe ac (rest (Ac-loe ac))))]
+
     (add-image (Pc-s_idx (Ac-pc ac)) STACKS PLAYER_IMAGE)
       )
     )
